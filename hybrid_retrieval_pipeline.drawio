@@ -1,0 +1,71 @@
+<mxfile host="app.diagrams.net" modified="2026-07-27T00:00:00.000Z" agent="GPT-5.5" version="24.7.17" type="device">
+  <diagram id="hybrid-retrieval-pipeline" name="Hybrid Retrieval Pipeline">
+    <mxGraphModel dx="1800" dy="1100" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="项目记忆库 Hybrid Retrieval Pipeline" style="text;html=1;strokeColor=none;fillColor=none;fontSize=28;fontStyle=1;fontColor=#1F2937;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="340" y="20" width="920" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="input" value="输入：分散项目记忆&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;Markdown 文件、JSON 事实表、向量库、历史会话摘要&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1E88E5;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="120" width="250" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="normalize" value="离线索引与标准化&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;切块、去重、抽取元数据：项目/文件/时间/主题/来源&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#43A047;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="120" width="280" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="stores" value="三类索引并存&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;1. 关键词倒排/BM25&lt;br&gt;2. Embedding 向量索引&lt;br&gt;3. 结构化事实 + 时间索引&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#F9A825;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="105" width="300" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="question" value="用户问题&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;“之前为什么不用图数据库？现在还能改吗？”&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#8E24AA;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="320" width="250" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="rewrite" value="Query Rewrite&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;扩展同义词、补全上下文、生成子问题：原因/约束/迁移可行性&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1E88E5;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="310" width="280" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="timefilter" value="Time / Scope Filter&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;按项目、版本、决策日期、最近变更过滤，避免引用过期记忆&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F7FA;strokeColor=#00ACC1;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="310" width="300" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="parallel" value="并行召回" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#616161;fontSize=17;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="335" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bm25" value="Grep / BM25&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;精确命中：图数据库、Neo4j、ADR、迁移&lt;br&gt;失败模式：同义词/改写表达漏召回&lt;br&gt;延迟：低；复杂度：低&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#43A047;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="180" y="520" width="300" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="vector" value="Vector Search&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;语义召回：架构权衡、历史讨论、替代方案&lt;br&gt;失败模式：相似但不相关、旧内容混入&lt;br&gt;延迟：中；复杂度：中&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#F9A825;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="520" y="520" width="300" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="fact" value="Fact / JSON Lookup&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;结构化查询：决策状态、负责人、时间线、依赖&lt;br&gt;失败模式：事实表缺字段或更新滞后&lt;br&gt;延迟：低；复杂度：中&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#8E24AA;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="860" y="520" width="300" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="history" value="Conversation Summary&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;会话摘要召回：当时为什么这样决定、未记录的背景&lt;br&gt;失败模式：摘要丢细节或带主观偏差&lt;br&gt;延迟：低-中；复杂度：低&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2F1;strokeColor=#00897B;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="520" width="300" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="merge" value="合并、去重、证据归一&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;按 chunk/source 合并；保留引用、时间戳、置信度、召回路径&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1E88E5;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="730" width="320" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="rerank" value="Rerank + Top-K&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;交叉编码器/LLM 打分：相关性、时效性、来源可信度、多样性&lt;br&gt;Top-K 建议：8-12 条核心证据 + 3 条反例/风险&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#FB8C00;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="960" y="720" width="330" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="answer" value="生成带证据的回答&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;回答“为什么当时不用”“现在能否改”“迁移步骤/风险/成本”&lt;br&gt;失败模式：证据不足时必须说明缺口并追问或降级&lt;br&gt;新增延迟：约 +300ms 到数秒；复杂度：索引维护 + rerank 服务&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#43A047;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="570" y="930" width="500" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#546E7A;" edge="1" parent="1" source="input" target="normalize"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e2" style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#546E7A;" edge="1" parent="1" source="normalize" target="stores"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e3" style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#546E7A;" edge="1" parent="1" source="question" target="rewrite"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e4" style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#546E7A;" edge="1" parent="1" source="rewrite" target="timefilter"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e5" style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#546E7A;" edge="1" parent="1" source="timefilter" target="parallel"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e6" style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#546E7A;" edge="1" parent="1" source="stores" target="parallel"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e7" style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#546E7A;" edge="1" parent="1" source="parallel" target="bm25"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e8" style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#546E7A;" edge="1" parent="1" source="parallel" target="vector"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e9" style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#546E7A;" edge="1" parent="1" source="parallel" target="fact"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e10" style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#546E7A;" edge="1" parent="1" source="parallel" target="history"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e11" style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#546E7A;" edge="1" parent="1" source="bm25" target="merge"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e12" style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#546E7A;" edge="1" parent="1" source="vector" target="merge"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e13" style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#546E7A;" edge="1" parent="1" source="fact" target="merge"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e14" style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#546E7A;" edge="1" parent="1" source="history" target="merge"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e15" style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#546E7A;" edge="1" parent="1" source="merge" target="rerank"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e16" style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#546E7A;" edge="1" parent="1" source="rerank" target="answer"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
